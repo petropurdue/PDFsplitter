@@ -3,8 +3,7 @@ import PyPDF2
 import glob
 
 #Optional improvements that could be made to this program:
-#Don't run if a pdf can't be found
-#Don't run if the pdf length is 1
+#None! Everything finished!
 
 def pdfsplit(listlbl, filename): #this is where the splitting actually happens
     #Initializations
@@ -33,7 +32,10 @@ def getfilenames(): #put the pdf file in the folder where you run this, it'll ta
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     fnl = getfilenames()
-    for a in range(len(fnl)):
-        listlabel = (chr(a+97))
-        pdfsplit(listlabel,fnl[a])
-    print("PDF split successfully!")
+    if fnl != []:
+        for a in range(len(fnl)):
+            listlabel = (chr(a+97))
+            pdfsplit(listlabel,fnl[a])
+        print("PDF split successfully!")
+    else:
+        print("No files received!")
