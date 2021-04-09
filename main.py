@@ -5,6 +5,9 @@ import glob
 #Optional improvements that could be made to this program:
 #None! Everything finished!
 
+def two_digit_hex_to_three_digit_integer(hex): #Credit to lmiguelvargasf on stackoverflow for this function
+    return str(int(hex, 16)).zfill(3)
+
 def pdfsplit(listlbl, filename): #this is where the splitting actually happens
     #Initializations
     pdfFileObj = open(filename, 'rb')
@@ -13,7 +16,8 @@ def pdfsplit(listlbl, filename): #this is where the splitting actually happens
 
     #Page splitting
     for i in range(pdfReader.numPages):
-        writefilename = listlbl + chr(i+49) + '.pdf'    #write as a1.pdf, a2.pdf, b1.pdf, b2.pdf, etc
+        writei = two_digit_hex_to_three_digit_integer(hex(i))
+        writefilename = listlbl + writei + '.pdf'    #write as a001.pdf, a2.pdf, b1.pdf, b2.pdf, etc
         pdf_writer = PyPDF2.PdfFileWriter()
         pdf_writer.addPage(pagereader.getPage(i))
         with open(writefilename, 'wb') as output_file:
